@@ -130,6 +130,42 @@
       h1 { letter-spacing: -1px; }
     }
   </style>
+  
+.shot img {
+  cursor: zoom-in;
+  transition: transform 0.2s ease;
+}
+
+.shot img:hover {
+  transform: scale(1.03);
+}
+
+.shot img:focus-visible {
+  outline: 2px solid #a589ff;
+}
+
+#imageViewer {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  padding: 30px;
+  background: rgba(4, 5, 15, 0.95);
+  z-index: 9999;
+  cursor: zoom-out;
+}
+
+#imageViewer::backdrop {
+  background: rgba(4, 5, 15, 0.95);
+}
+
+#imageViewer img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
 </head>
 <body>
   <header>
@@ -202,5 +238,37 @@
   </main>
 
   <footer>© 2026 Latarez Studio. All rights reserved.</footer>
+  
+<dialog id="imageViewer" aria-label="Screenshot preview">
+  <img id="expandedImage" alt="Expanded game screenshot">
+</dialog>
+
+<script>
+  const viewer = document.getElementById('imageViewer');
+  const expandedImage = document.getElementById('expandedImage');
+
+  document.querySelectorAll('.shot img').forEach(img => {
+    img.setAttribute('tabindex', '0');
+    img.setAttribute('role', 'button');
+    img.setAttribute('aria-label', 'Enlarge: ' + img.alt);
+
+    function openImage() {
+      expandedImage.src = img.src;
+      expandedImage.alt = img.alt;
+      viewer.showModal();
+    }
+
+    img.addEventListener('click', openImage);
+    img.addEventListener('keydown', event => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        openImage();
+      }
+    });
+  });
+
+  viewer.addEventListener('click', () => viewer.close());
+</script>
+
 </body>
 </html>
