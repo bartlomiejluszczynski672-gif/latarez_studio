@@ -15,11 +15,26 @@ const updates=[
  {date:'October 2026',title:'NEON DODGE — Sound Update',body:'Music, sound effects, and daily missions.'}
 ];
 const titles={all:'Latest Releases',horror:'Horror Games',space:'Space Games',free:'Free Games',paid:'Paid Games'};
+
 function render(filter='all'){
  document.querySelector('#category').textContent=titles[filter];
  const filtered=games.filter(g=>filter==='all'||g.genre===filter||g.access===filter);
- document.querySelector('#cards').innerHTML=filtered.map(g=>`<article class="card"><div class="art ${g.genre}">${g.icon}</div><div class="info"><span class="tag">${g.genre.toUpperCase()}</span><span class="tag ${g.access}">${g.access==='free'?'FREE':'PAID'}</span><span class="tag">${g.platform}</span><h3>${g.name}</h3><p>${g.description}</p><div class="state">${g.status} · Download unavailable</div></div></article>`).join('')||'<p class="muted">No games in this category yet.</p>';
+ document.querySelector('#cards').innerHTML=filtered.map(g=>`
+  <article class="card">
+   <div class="art ${g.genre}">${g.icon}</div>
+   <div class="info">
+    <span class="tag">${g.genre.toUpperCase()}</span>
+    <span class="tag ${g.access}">${g.access==='free'?'FREE':'PAID'}</span>
+    <span class="tag">${g.platform}</span>
+    <h3>${g.name}</h3>
+    <p>${g.description}</p>
+    <div class="state">${g.status} · Download unavailable</div>
+    ${g.url ? `<a href="${g.url}" class="cta">View Game →</a>` : ''}
+   </div>
+  </article>
+ `).join('')||'<p class="muted">No games in this category yet.</p>';
 }
+
 document.querySelectorAll('nav button').forEach(button=>button.addEventListener('click',()=>{document.querySelectorAll('nav button').forEach(b=>b.classList.remove('selected'));button.classList.add('selected');render(button.dataset.filter);document.querySelector('#games').scrollIntoView({behavior:'smooth'});}));
 document.querySelector('#updates').innerHTML=updates.map(u=>`<article class="update"><time>${u.date}</time><h3>${u.title}</h3><p>${u.body}</p></article>`).join('');
 document.querySelector('#year').textContent=new Date().getFullYear();render();
