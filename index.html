@@ -34,7 +34,9 @@ function render(filter='all'){
     <span class="tag">${g.platform}</span>
     <h3>${g.name}</h3>
     <p>${g.description}</p>
-    <div class="state">${g.status} · Download unavailable</div>
+    
+<div class="state">${g.status} · ${g.name === 'NEON DODGE' ? 'Download for Android' : 'Download unavailable'}</div>
+
     ${g.url ? `<a href="${g.url}" class="cta">View Game →</a>` : ''}
    </div>
   </article>
