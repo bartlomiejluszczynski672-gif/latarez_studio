@@ -5,7 +5,7 @@
 </style></head><body><header><a class="logo" href="#">✦ Latarez<span>_Studio</span></a><nav><button data-filter="all" class="selected">Home</button><button data-filter="horror">Horror</button><button data-filter="space">Space</button><button data-filter="free">Free Games</button><button data-filter="paid">Paid Games</button></nav></header><main><section class="hero"><div class="overline">INDEPENDENT GAME STUDIO</div><h1>Discover new <em>worlds.</em><br>Play beyond limits.</h1><p>Original indie games, from neon arcade challenges to atmospheric horror.</p><a class="cta" href="#games">Explore Games ↗</a><div class="planet">✦</div></section><section id="games"><div class="overline">OUR LIBRARY</div><h2 id="category">Latest Releases</h2><div id="cards" class="cards"></div></section><section class="news"><div class="overline">DEV LOG</div><h2>Latest Updates</h2><div id="updates"></div></section><section class="end"><h2>More worlds are on the way.</h2><p>Follow the journey of Latarez_Studio.</p></section></main><footer><strong>✦ Latarez_Studio</strong><span>© <span id="year"></span> Latarez_Studio</span></footer><script>// Add future releases here. Do not add payment links until checkout is ready.
 const games=[
  
-{name:'NEON DODGE',genre:'space',access:'free',platform:'Android',icon:'◆',description:'Dodge obstacles, collect crystals, and unlock unique neon ships.',status:'In development',url:'neon-dodge.html'},
+{name:'NEON DODGE',genre:'space',access:'free',platform:'Android',icon:'app_icon.png',description:'Dodge obstacles, collect crystals, and unlock unique neon ships.',status:'Available now',url:'neon-dodge.html'},
 
  {name:'LAST SHIFT',genre:'horror',access:'paid',platform:'Windows PC',icon:'◈',description:'An atmospheric retro-style horror experience set during a night shift.',status:'Coming soon'}
 ];
@@ -21,7 +21,13 @@ function render(filter='all'){
  const filtered=games.filter(g=>filter==='all'||g.genre===filter||g.access===filter);
  document.querySelector('#cards').innerHTML=filtered.map(g=>`
   <article class="card">
-   <div class="art ${g.genre}">${g.icon}</div>
+   
+<div class="art ${g.genre}">
+  ${g.name === 'NEON DODGE'
+    ? '<img src="app_icon.png" alt="NEON DODGE game icon" style="width:100%;height:100%;object-fit:cover;display:block;">'
+    : g.icon}
+</div>
+
    <div class="info">
     <span class="tag">${g.genre.toUpperCase()}</span>
     <span class="tag ${g.access}">${g.access==='free'?'FREE':'PAID'}</span>
