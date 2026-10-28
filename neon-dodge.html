@@ -66,15 +66,24 @@
       font-size: 12px;
       font-weight: bold;
     }
-    .download {
-      display: inline-block;
-      background: #7650e5;
-      padding: 16px 30px;
-      border-radius: 10px;
-      font-weight: bold;
-      opacity: .7;
-      cursor: not-allowed;
-    }
+    
+.download {
+  display: inline-block;
+  background: #7650e5;
+  padding: 16px 30px;
+  border-radius: 10px;
+  font-weight: bold;
+  color: white;
+  opacity: 1;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.download:hover {
+  background: #916cff;
+  transform: translateY(-3px);
+}
+
     section { margin-top: 70px; }
     h2 { font-size: 30px; }
     .intro { color: #b4b8d1; line-height: 1.9; }
@@ -236,7 +245,12 @@
         <span class="tag">ANDROID</span>
         <span class="tag">ARCADE</span>
       </div>
-      <span class="download">DOWNLOAD — COMING SOON</span>
+      
+<a class="download"
+   href="https://github.com/bartlomiejluszczynski672-gif/latarez_studio/releases/download/v2.3/NEON_DODGE_2.3.apk">
+  ⬇ DOWNLOAD FOR ANDROID — FREE
+</a>
+
     </div>
 
     <section>
@@ -317,14 +331,21 @@
           <th style="padding:14px;">Version</th>
           <td style="padding:14px;">2.3</td>
         </tr>
-        <tr>
-          <th style="padding:14px;">Release Status</th>
-          <td style="padding:14px;">In Development</td>
-        </tr>
-        <tr>
-          <th style="padding:14px;">Download</th>
-          <td style="padding:14px;">Coming Soon</td>
-        </tr>
+        
+<tr>
+  <th style="padding:14px;">Release Status</th>
+  <td style="padding:14px;">Released — v2.3</td>
+</tr>
+<tr>
+  <th style="padding:14px;">Download</th>
+  <td style="padding:14px;">
+    <a href="https://github.com/bartlomiejluszczynski672-gif/latarez_studio/releases/download/v2.3/NEON_DODGE_2.3.apk"
+       style="color:#bda7ff;font-weight:bold;text-decoration:underline;">
+      Download APK (Android)
+    </a>
+  </td>
+</tr>
+
       </tbody>
     </table>
   </div>
